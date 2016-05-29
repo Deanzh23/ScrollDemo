@@ -29,10 +29,10 @@
                android:layout_marginTop="24dp"
                android:src="@drawable/dean_logo_icon"/>
 
-    <com.cn.dean.demo.scrollgroupdemo.scroll.ScrollViewGroup android:id="@+id/scoreLayout"
-                                                             android:layout_width="match_parent"
-                                                             android:layout_height="match_parent"
-                                                             android:layout_marginTop="40dp">
+    <RelativeLayout android:id="@+id/scoreLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="40dp">
 
         <TextView android:id="@+id/scoreTextView"
                   android:layout_width="wrap_content"
@@ -62,6 +62,6 @@
                   android:textColor="@android:color/black"
                   android:textSize="12sp"
                   android:textStyle="bold"/>
-    </com.cn.dean.demo.scrollgroupdemo.scroll.ScrollViewGroup>
+    </RelativeLayout>
 
 </RelativeLayout>

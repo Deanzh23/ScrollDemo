@@ -32,7 +32,7 @@
                         android:background="@android:color/holo_blue_dark">
 
             <include android:id="@+id/behindScoreLayout"
-                     layout="@layout/layout_animation_behind_top"
+                     layout="@layout/layout_scroll_behind_top"
                      android:layout_width="match_parent"
                      android:layout_height="match_parent"/>
 

@@ -46,16 +46,6 @@ public class ScrollViewGroup extends RelativeLayout {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-
-//        int count = getChildCount();
-//
-//        for (int i = 0; i < count; i++) {
-//            View view = getChildAt(i);
-//
-//            if (view.getId() == R.id.frontBottomLayout) {
-//                mFrontBottomLayout = (RelativeLayout) view;
-//            }
-//        }
     }
 
     @Override
