@@ -9,12 +9,12 @@ import com.cn.dean.demo.scrollgroupdemo.R;
 /**
  * Created by Dean on 16/5/27.
  */
-public class ScrollActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_animation);
+        setContentView(R.layout.activity_main);
 
     }
 }

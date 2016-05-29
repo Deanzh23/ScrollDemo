@@ -35,22 +35,27 @@ public class ScrollViewGroup extends RelativeLayout {
         mContext = context;
 
         initScroller();
+        this.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                mFrontBottomLayout = (RelativeLayout) findViewById(R.id.frontBottomLayout);
+            }
+        });
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
 
-        int count = getChildCount();
-
-        for (int i = 0; i < count; i++) {
-            View view = getChildAt(i);
-
-            if (view.getId() == R.id.frontBottomLayout) {
-                mFrontBottomLayout = (RelativeLayout) view;
-            }
-
-        }
+//        int count = getChildCount();
+//
+//        for (int i = 0; i < count; i++) {
+//            View view = getChildAt(i);
+//
+//            if (view.getId() == R.id.frontBottomLayout) {
+//                mFrontBottomLayout = (RelativeLayout) view;
+//            }
+//        }
     }
 
     @Override
