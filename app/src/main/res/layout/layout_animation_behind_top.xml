@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TextView android:id="@+id/dateTextView"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_centerHorizontal="true"
+              android:text="2016-05-23"
+              android:textColor="@android:color/white"/>
+
+    <TextView android:id="@+id/messageTextView"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/dateTextView"
+              android:layout_centerHorizontal="true"
+              android:layout_marginTop="8dp"
+              android:text="什么玩仍没有绑定，请点击什么玩仍去绑定去！"
+              android:textColor="@android:color/white"
+              android:textSize="12sp"/>
+
+    <ImageView android:id="@+id/iconImageView"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_below="@id/messageTextView"
+               android:layout_centerHorizontal="true"
+               android:layout_marginBottom="24dp"
+               android:layout_marginTop="24dp"
+               android:src="@drawable/dean_logo_icon"/>
+
+    <com.cn.dean.demo.scrollgroupdemo.scroll.ScrollViewGroup android:id="@+id/scoreLayout"
+                                                             android:layout_width="match_parent"
+                                                             android:layout_height="match_parent"
+                                                             android:layout_marginTop="40dp">
+
+        <TextView android:id="@+id/scoreTextView"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_centerInParent="true"
+                  android:layout_marginTop="8dp"
+                  android:text="100分"
+                  android:textColor="@android:color/black"
+                  android:textSize="30sp"
+                  android:textStyle="bold"/>
+
+        <TextView android:id="@+id/qualityOfSleepTextView"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_above="@id/scoreTextView"
+                  android:layout_centerHorizontal="true"
+                  android:text="睡眠质量"
+                  android:textColor="@android:color/black"
+                  android:textSize="12sp"
+                  android:textStyle="bold"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/scoreTextView"
+                  android:layout_centerHorizontal="true"
+                  android:text="贼好啊"
+                  android:textColor="@android:color/black"
+                  android:textSize="12sp"
+                  android:textStyle="bold"/>
+    </com.cn.dean.demo.scrollgroupdemo.scroll.ScrollViewGroup>
+
+</RelativeLayout>

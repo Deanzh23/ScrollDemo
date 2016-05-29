@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <!--  behind layout -->
+    <RelativeLayout android:id="@+id/behindLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+        <!-- behind center layout -->
+        <RelativeLayout android:id="@+id/behindCenterLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_centerInParent="true"
+                        android:background="@android:color/holo_green_dark">
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_centerInParent="true"
+                      android:text="这个地方也不睡了多长时间什么的"
+                      android:textColor="@android:color/white"/>
+
+        </RelativeLayout>
+
+        <!-- behind top layout -->
+        <RelativeLayout android:id="@+id/behindTopLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/behindCenterLayout"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/holo_blue_dark">
+
+            <include android:id="@+id/scoreLayout"
+                     layout="@layout/layout_animation_behind_top"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!-- front layout -->
+    <com.cn.dean.demo.scrollgroupdemo.scroll.ScrollViewGroup android:id="@+id/frontLayout"
+                                                             android:layout_width="match_parent"
+                                                             android:layout_height="match_parent">
+
+        <!-- front center view -->
+        <View android:id="@+id/frontCenterView"
+              android:layout_width="match_parent"
+              android:layout_height="100dp"
+              android:layout_centerInParent="true"/>
+
+        <!-- front top layout -->
+        <RelativeLayout android:id="@+id/frontTopLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/frontCenterView"
+                        android:layout_alignParentTop="true">
+
+        </RelativeLayout>
+
+        <!-- front bottom layout -->
+        <RelativeLayout android:id="@+id/frontBottomLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_below="@id/frontCenterView"
+                        android:background="@android:color/holo_orange_dark">
+
+        </RelativeLayout>
+
+    </com.cn.dean.demo.scrollgroupdemo.scroll.ScrollViewGroup>
+
+</RelativeLayout>
