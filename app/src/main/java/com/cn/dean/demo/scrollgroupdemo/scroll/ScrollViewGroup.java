@@ -121,7 +121,7 @@ public class ScrollViewGroup extends RelativeLayout {
         mFrontBottomLayout.getLocationOnScreen(localRect);
 
         int startY;
-        if (localRect[1] > mOutRect.bottom / 2.0 - 200) {
+        if (localRect[1] > mOutRect.bottom / 2.0 - 120) {
             startY = mY * mMoveY - mDownY > 0 ? 1 : -1;
             mY = 0;
         } else {
