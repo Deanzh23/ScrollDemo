@@ -8,9 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".scroll.ScrollerActivity"/>
-        <activity android:name=".animation.AnimationActivity">
+        <activity android:name=".scroll.ScrollActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

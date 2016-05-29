@@ -9,13 +9,12 @@ import com.cn.dean.demo.scrollgroupdemo.R;
 /**
  * Created by Dean on 16/5/27.
  */
-public class ScrollerActivity extends AppCompatActivity {
+public class ScrollActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scroller);
-
+        setContentView(R.layout.activity_animation);
 
     }
 }
