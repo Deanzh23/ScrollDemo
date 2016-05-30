@@ -31,6 +31,7 @@ public class ScrollControlLayout extends RelativeLayout {
     private RelativeLayout mFrontBottomLayout;
     private ScrollLayout mScoreLayout;
     private RelativeLayout mScoreCenterLayout;
+    private TextView mDateTextView;
     private TextView mQualityOfSleepTextView;
     private TextView mScoreBottomTextView;
 
@@ -63,6 +64,7 @@ public class ScrollControlLayout extends RelativeLayout {
                 mScoreBottomTextView = (TextView) findViewById(R.id.scoreBottomTextView);
                 mScoreInitHeight = mScoreBottomTextView.getY() - mQualityOfSleepTextView.getY();
                 mScoreMaxY = mScoreCenterLayout.getY() + mScoreCenterLayout.getHeight();
+                mDateTextView = (TextView) findViewById(R.id.dateTextView);
             }
         });
     }
@@ -186,7 +188,7 @@ public class ScrollControlLayout extends RelativeLayout {
                 break;
             case MOVE_TO_TOP:
                 mMoveBehindOffset = (float) (layoutHeight * 0.2) - mScoreInitHeight;
-                move = (float) (localRect[1] - outRect.top);
+                move = (float) (localRect[1] - outRect.top - mDateTextView.getHeight());
                 break;
         }
 
