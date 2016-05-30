@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.cn.dean.demo.scrollgroupdemo.scroll.scroll.ScrollControlLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.cn.dean.demo.scrollgroupdemo.scroll.scroll.ScrollControlLayout android:id="@+id/scrollControlLayout"
+                                                                    xmlns:android="http://schemas.android.com/apk/res/android"
                                                                     android:layout_width="match_parent"
                                                                     android:layout_height="match_parent">
 
@@ -40,9 +41,9 @@
     </RelativeLayout>
 
     <!-- front layout -->
-    <RelativeLayout android:id="@+id/frontLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+    <com.cn.dean.demo.scrollgroupdemo.scroll.scroll.ScrollLayout android:id="@+id/frontLayout"
+                                                                 android:layout_width="match_parent"
+                                                                 android:layout_height="match_parent">
 
         <!-- front center view -->
         <View android:id="@+id/frontCenterView"
@@ -69,6 +70,6 @@
 
         </RelativeLayout>
 
-    </RelativeLayout>
+    </com.cn.dean.demo.scrollgroupdemo.scroll.scroll.ScrollLayout>
 
 </com.cn.dean.demo.scrollgroupdemo.scroll.scroll.ScrollControlLayout>

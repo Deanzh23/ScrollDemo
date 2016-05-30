@@ -29,38 +29,46 @@
                android:layout_marginTop="24dp"
                android:src="@drawable/dean_logo_icon"/>
 
-    <RelativeLayout android:id="@+id/scoreLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+    <com.cn.dean.demo.scrollgroupdemo.scroll.scroll.ScrollLayout android:id="@+id/scoreLayout"
+                                                                 android:layout_width="match_parent"
+                                                                 android:layout_height="match_parent">
 
-        <TextView android:id="@+id/scoreTextView"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_centerInParent="true"
-                  android:layout_marginTop="8dp"
-                  android:text="100分"
-                  android:textColor="@android:color/black"
-                  android:textSize="30sp"
-                  android:textStyle="bold"/>
+        <RelativeLayout android:id="@+id/scoreCenterLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true">
 
-        <TextView android:id="@+id/qualityOfSleepTextView"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_above="@id/scoreTextView"
-                  android:layout_centerHorizontal="true"
-                  android:text="睡眠质量"
-                  android:textColor="@android:color/black"
-                  android:textSize="12sp"
-                  android:textStyle="bold"/>
+            <TextView android:id="@+id/scoreTextView"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_centerInParent="true"
+                      android:layout_marginTop="8dp"
+                      android:text="100分"
+                      android:textColor="@android:color/black"
+                      android:textSize="30sp"
+                      android:textStyle="bold"/>
 
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_below="@id/scoreTextView"
-                  android:layout_centerHorizontal="true"
-                  android:text="贼好啊"
-                  android:textColor="@android:color/black"
-                  android:textSize="12sp"
-                  android:textStyle="bold"/>
-    </RelativeLayout>
+            <TextView android:id="@+id/qualityOfSleepTextView"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_above="@id/scoreTextView"
+                      android:layout_centerHorizontal="true"
+                      android:text="睡眠质量"
+                      android:textColor="@android:color/black"
+                      android:textSize="12sp"
+                      android:textStyle="bold"/>
+
+            <TextView android:id="@+id/scoreBottomTextView"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@id/scoreTextView"
+                      android:layout_centerHorizontal="true"
+                      android:text="贼好啊"
+                      android:textColor="@android:color/black"
+                      android:textSize="12sp"
+                      android:textStyle="bold"/>
+        </RelativeLayout>
+
+    </com.cn.dean.demo.scrollgroupdemo.scroll.scroll.ScrollLayout>
 
 </RelativeLayout>

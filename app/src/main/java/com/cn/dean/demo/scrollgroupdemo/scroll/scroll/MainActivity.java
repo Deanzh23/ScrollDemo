@@ -10,10 +10,19 @@ import com.cn.dean.demo.scrollgroupdemo.R;
  */
 public class MainActivity extends AppCompatActivity {
 
+    private ScrollControlLayout mScrollControlLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scroll);
 
+        mScrollControlLayout = (ScrollControlLayout) findViewById(R.id.scrollControlLayout);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        mScrollControlLayout.init(this);
     }
 }

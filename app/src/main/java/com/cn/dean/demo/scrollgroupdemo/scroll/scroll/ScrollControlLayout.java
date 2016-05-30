@@ -1,6 +1,8 @@
 package com.cn.dean.demo.scrollgroupdemo.scroll.scroll;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +11,8 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.Scroller;
+import android.widget.TextView;
 
 import com.cn.dean.demo.scrollgroupdemo.R;
 
@@ -17,14 +21,24 @@ import com.cn.dean.demo.scrollgroupdemo.R;
  */
 public class ScrollControlLayout extends RelativeLayout {
 
+    private static final int MOVE_TO_TOP = 0;
+    private static final int MOVE_TO_BOTTOM = 1;
+
     private Context mContext;
-    private RelativeLayout mFrontLayout;
+    private Rect outRect;
+
+    private ScrollLayout mFrontLayout;
     private RelativeLayout mFrontBottomLayout;
-    private RelativeLayout mScoreLayout;
+    private ScrollLayout mScoreLayout;
+    private RelativeLayout mScoreCenterLayout;
+    private TextView mQualityOfSleepTextView;
+    private TextView mScoreBottomTextView;
 
     private float layoutHeight;
     private float mMoveFrontOffset;
     private float mMoveBehindOffset;
+    private float mScoreInitHeight;
+    private float mScoreMaxY;
 
     private float mDownY;
     private float mMoveY;
@@ -41,11 +55,21 @@ public class ScrollControlLayout extends RelativeLayout {
             @Override
             public void onGlobalLayout() {
                 layoutHeight = getHeight();
-                mFrontLayout = (RelativeLayout) findViewById(R.id.frontLayout);
+                mFrontLayout = (ScrollLayout) findViewById(R.id.frontLayout);
                 mFrontBottomLayout = (RelativeLayout) findViewById(R.id.frontBottomLayout);
-                mScoreLayout = (RelativeLayout) findViewById(R.id.scoreLayout);
+                mScoreLayout = (ScrollLayout) findViewById(R.id.scoreLayout);
+                mScoreCenterLayout = (RelativeLayout) findViewById(R.id.scoreCenterLayout);
+                mQualityOfSleepTextView = (TextView) findViewById(R.id.qualityOfSleepTextView);
+                mScoreBottomTextView = (TextView) findViewById(R.id.scoreBottomTextView);
+                mScoreInitHeight = mScoreBottomTextView.getY() - mQualityOfSleepTextView.getY();
+                mScoreMaxY = mScoreCenterLayout.getY() + mScoreCenterLayout.getHeight();
             }
         });
+    }
+
+    public void init(Activity activity) {
+        outRect = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(outRect);
     }
 
     @Override
@@ -62,13 +86,14 @@ public class ScrollControlLayout extends RelativeLayout {
             case MotionEvent.ACTION_MOVE:
                 mMoveY = event.getRawY();
 
-                /** 移动 **/
+                /** 手动移动 **/
                 moveControl();
 
                 mDownY = mMoveY;
                 break;
             case MotionEvent.ACTION_UP:
-
+                /** 弹性移动 **/
+                autoMove();
                 break;
         }
 
@@ -88,7 +113,6 @@ public class ScrollControlLayout extends RelativeLayout {
      */
     private void moveFront() {
         mMoveFrontOffset += mDownY - mMoveY;
-//        Log.d(ScrollControlLayout.class.getSimpleName(), "[moveFront]---> mMoveFrontOffset is " + mMoveFrontOffset);
 
         /** 下边界 **/
         if (mMoveFrontOffset < 0)
@@ -104,17 +128,69 @@ public class ScrollControlLayout extends RelativeLayout {
      * 移动下层
      */
     private void moveBehind() {
-        mMoveBehindOffset += (mDownY - mMoveY) * 0.4;
-        Log.d(ScrollControlLayout.class.getSimpleName(), "[moveBehind]---> mMoveBehindOffset is " + mMoveFrontOffset);
+        mMoveBehindOffset += (mDownY - mMoveY) * 0.35;
 
         /** 下边界 **/
         if (mMoveBehindOffset < 0)
             mMoveBehindOffset = 0;
         /** 上边界 **/
-        else if (mMoveBehindOffset > 165)
-            mMoveBehindOffset = 165;
+        else if (mMoveBehindOffset > layoutHeight * 0.2 - mScoreInitHeight)
+            mMoveBehindOffset = (float) (layoutHeight * 0.2) - mScoreInitHeight;
 
         mScoreLayout.scrollTo(0, (int) mMoveBehindOffset);
+    }
+
+    private void autoMove() {
+        int[] localRect = new int[2];
+        mFrontBottomLayout.getLocationOnScreen(localRect);
+
+        if (localRect[1] > layoutHeight * 0.5 - 50) {
+            autoMoveFront(MOVE_TO_BOTTOM);
+            autoMoveBehind(MOVE_TO_BOTTOM);
+        } else {
+            autoMoveFront(MOVE_TO_TOP);
+            autoMoveBehind(MOVE_TO_TOP);
+        }
+    }
+
+    private void autoMoveFront(int direction) {
+        int[] localRect = new int[2];
+        mFrontBottomLayout.getLocationOnScreen(localRect);
+
+        float move = 0;
+
+        switch (direction) {
+            case MOVE_TO_BOTTOM:
+                mMoveFrontOffset = 0;
+                move = localRect[1] - layoutHeight + mFrontBottomLayout.getHeight() - outRect.top;
+                break;
+            case MOVE_TO_TOP:
+                mMoveFrontOffset = (float) (layoutHeight * 0.8 - mFrontBottomLayout.getHeight());
+                move = (float) (localRect[1] - layoutHeight * 0.2 - outRect.top);
+                break;
+        }
+
+        mFrontLayout.scroll(move);
+    }
+
+    private void autoMoveBehind(int direction) {
+        int[] localRect = new int[2];
+        mScoreCenterLayout.getLocationOnScreen(localRect);
+
+        float move = 0;
+
+        switch (direction) {
+            case MOVE_TO_BOTTOM:
+                mMoveBehindOffset = 0;
+                move = localRect[1] - mScoreMaxY + mScoreCenterLayout.getHeight() - outRect.top;
+                break;
+            case MOVE_TO_TOP:
+                mMoveBehindOffset = (float) (layoutHeight * 0.2) - mScoreInitHeight;
+                move = (float) (localRect[1] - outRect.top);
+                break;
+        }
+
+        mScoreLayout.scroll(move);
     }
 
 }
